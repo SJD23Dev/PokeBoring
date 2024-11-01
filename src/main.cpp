@@ -1,5 +1,8 @@
 #include <iostream>
+#include "poke.hpp"
 
 int main() {
-    std::cout << "Hello Pokemon world!" << std::endl;
+    //Poke poke;
+    //poke.setName("Pikachu");
+    //std::cout << poke.getName() << std::endl;
 }
