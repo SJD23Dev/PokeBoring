@@ -1,6 +1,6 @@
 ![HeaderImage](assets/images/readme_header.png)
 ## Overview
-**PokeBoring** is a C++ terminal program where the user is in constant Generation 1 Pokémon battles until their Pokémon faints. Pokémon may level up and learn moves in accordance with the move set for each Pokémon.
+**PokeBoring** is a C++ terminal program where the user is in constant Generation 1 Pokémon battles until all their Pokémon are incapacitated. The user begins with 1 random Pokémon at level 0. The Every 10 battles, a new random pokemon is given. The game is over if the user wins 100 battles.
 
 ## Technology Used
 - [**C++**](https://cplusplus.com/): The programming langauge used.
