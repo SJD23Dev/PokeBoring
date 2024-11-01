@@ -1,2 +1,1 @@
-# PokeBoring
-The most boring way to play Pokémon ever invented!
+![HeaderImage](assets/images/readme_header.png)
