@@ -1,8 +1,24 @@
 cmake_minimum_required(VERSION 3.12.0)
-project(PokeBoring VERSION 0.1.0 LANGUAGES C CXX)
+project(PokeBoring)
 
+# Supress developer warnings
+set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS ON)
+
+# Add .cpp files in ../src to the project
 add_executable(PokeBoring
-               src/main.cpp)
+               src/main.cpp
+               src/poke.cpp)
+
+# Include the .hpp header files in ../include the project
+target_include_directories(PokeBoring PUBLIC ${CMAKE_SOURCE_DIR}/include/)
+
+# Find and link curl
+find_package(curl REQUIRED)
+target_link_libraries(PokeBoring PRIVATE CURL::libcurl)
+
+# Find and link nlohmann/json
+find_package(nlohmann_json REQUIRED)
+target_link_libraries(PokeBoring PRIVATE nlohmann_json::nlohmann_json)
 
 include(CTest)
 enable_testing()
