@@ -1,6 +1,7 @@
 # Ignore system-specific build folders
 /.vscode/
 /build/
+/out/
 
 # Ignore .exe files
 *.exe
