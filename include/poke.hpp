@@ -8,7 +8,7 @@ class Poke {
     public:
         // Constructors
         Poke();
-        ~Poke() {}
+        ~Poke();
 
         // Setters
         void setID(int input);
