@@ -11,12 +11,12 @@ class Poke {
         ~Poke() {}
 
         // Setters
-        void setID(int input) {id = input;}
-        void setName(std::string input) {name = input;}
+        void setID(int input);
+        void setName(std::string input);
 
         // Getters
-        const int getID() const {return id;}
-        const std::string getName() const {return name;}
+        const int getID() const;
+        const std::string getName() const;
     private:
         int id;
         std::string name;
