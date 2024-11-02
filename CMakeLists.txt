@@ -7,7 +7,8 @@ set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS ON)
 # Add .cpp files in ../src to the project
 add_executable(PokeBoring
                src/main.cpp
-               src/poke.cpp)
+               src/poke.cpp
+               src/stats.cpp)
 
 # Include the .hpp header files in ../include the project
 target_include_directories(PokeBoring PUBLIC ${CMAKE_SOURCE_DIR}/include/)
