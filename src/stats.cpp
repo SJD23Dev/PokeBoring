@@ -14,67 +14,67 @@ Stats::Stats() {
 /* Default destructor for Stats object */
 Stats::~Stats() {}
 
-/* Set Stat object's hitpoints stat */
+/* Sets Stat object's hitpoints stat */
 void Stats::setHP(int input) {
     hp = input;
 }
 
-/* Set Stat object's attack stat */
+/* Sets Stat object's attack stat */
 void Stats::setAttack(int input) {
     attack = input;
 }
 
-/* Set Stat object's defense stat */
+/* Sets Stat object's defense stat */
 void Stats::setDefense(int input) {
     defense = input;
 }
 
-/* Set Stat object's special attack stat */
+/* Sets Stat object's special attack stat */
 void Stats::setSpeAttack(int input) {
     speAttack = input;
 }
 
-/* Set Stat object's special defense stat */
+/* Sets Stat object's special defense stat */
 void Stats::setSpeDefense(int input) {
     speDefense = input;
 }
 
-/* Set Stat object's speed stat */
+/* Sets Stat object's speed stat */
 void Stats::setSpeed(int input) {
     speed = input;
 }
 
-/* Get Stat object's hitpoint stat,
+/* Gets Stat object's hitpoint stat,
 returns as an integer */
 const int Stats::getHP() const {
     return hp;
 }
 
-/* Get Stat object's attack stat,
+/* Gets Stat object's attack stat,
 returns as an integer */
 const int Stats::getAttack() const {
     return attack;
 }
 
-/* Get Stat object's defense stat,
+/* Gets Stat object's defense stat,
 returns as an integer */
 const int Stats::getDefense() const {
     return defense;
 }
 
-/* Get Stat object's special attack stat,
+/* Gets Stat object's special attack stat,
 returns as an integer */
 const int Stats::getSpeAttack() const {
     return speAttack;
 }
 
-/* Get Stat object's special defense stat,
+/* Gets Stat object's special defense stat,
 returns as an integer */
 const int Stats::getSpeDefense() const {
     return speDefense;
 }
 
-/* Get Stat object's speed stat,
+/* Gets Stat object's speed stat,
 returns as an integer */
 const int Stats::getSpeed() const {
     return speed;
