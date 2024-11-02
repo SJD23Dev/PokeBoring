@@ -2,6 +2,7 @@
 #define POKEMON_HPP
 
 #include <string>
+#include "stats.hpp"
 
 class Poke {
     public:
@@ -19,6 +20,7 @@ class Poke {
     private:
         int id;
         std::string name;
+        Stats stats;
 };
 
 #endif
