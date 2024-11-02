@@ -8,6 +8,7 @@ set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS ON)
 add_executable(PokeBoring
                src/main.cpp
                src/poke.cpp
+               src/pokeDataFetcher.cpp
                src/stats.cpp)
 
 # Include the .hpp header files in ../include the project
