@@ -8,6 +8,7 @@ class Poke {
     public:
         // Constructors
         Poke();
+        Poke(int idDecleration);
         ~Poke();
 
         // Setters

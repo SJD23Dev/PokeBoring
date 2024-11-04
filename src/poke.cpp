@@ -7,6 +7,13 @@ Poke::Poke() {
     name = "default";
 }
 
+/* Constructor that allows declaration of
+an ID along with the default Poke object */
+Poke::Poke(int idDecleration) {
+    id = idDecleration;
+    name = "default";
+}
+
 /* Default destructor for Poke object */
 Poke::~Poke() {}
 
