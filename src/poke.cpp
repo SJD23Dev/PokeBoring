@@ -1,10 +1,17 @@
-#include "Poke.hpp"
+#include "poke.hpp"
 
 /* Default constructor for Poke object,
 initilizes all values to default state */ 
 Poke::Poke() {
     id = -99;
     name = "default";
+
+    stats.setHP(-99);
+    stats.setAttack(-99);
+    stats.setDefense(-99);
+    stats.setSpeAttack(-99);
+    stats.setSpeDefense(-99);
+    stats.setSpeed(-99);
 }
 
 /* Constructor that allows declaration of
@@ -12,6 +19,13 @@ an ID along with the default Poke object */
 Poke::Poke(int idDecleration) {
     id = idDecleration;
     name = "default";
+
+    stats.setHP(-99);
+    stats.setAttack(-99);
+    stats.setDefense(-99);
+    stats.setSpeAttack(-99);
+    stats.setSpeDefense(-99);
+    stats.setSpeed(-99);
 }
 
 /* Default destructor for Poke object */
