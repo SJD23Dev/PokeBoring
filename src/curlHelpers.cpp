@@ -1,4 +1,4 @@
-#include <curlHelpers.hpp>
+#include "curlHelpers.hpp"
 
 /* Callback function used by libcurl to append
 received data into a user-defined buffer */
