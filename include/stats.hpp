@@ -24,13 +24,10 @@ class Stats {
         const int getSpeed() const;
     private:
         int hp;
-
         int attack;
         int defense;
-
         int speAttack;
         int speDefense;
-
         int speed;
 };
 
