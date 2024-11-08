@@ -1,6 +1,7 @@
 #ifndef POKEMON_HPP
 #define POKEMON_HPP
 
+#include <fstream>
 #include <string>
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>
@@ -33,6 +34,8 @@ class Poke {
 struct pokeDataFetcher {
     bool fetchData(Poke& poke);
     void connectData(Poke& pokeToConnect, std::string readBuffer);
+
+    bool setSprite(Poke& pokeToConnect, nlohmann::json jsonFile);
 };
 
 #endif

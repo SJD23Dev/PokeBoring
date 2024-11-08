@@ -86,14 +86,16 @@ bool pokeDataFetcher::fetchData(Poke& poke) {
 
         res = curl_easy_perform(curl);
 
+        curl_easy_cleanup(curl);
+
         if (res == CURLE_OK) {
             connectData(poke, readBuffer);
+            return true;
         } else {
             return false;
         }
     }
-
-    return true;
+    return false;
 }
 
 /* Assigns the data from the JSON file to the Poke object */
@@ -102,4 +104,34 @@ void pokeDataFetcher::connectData(Poke& pokeToConnect, std::string readBuffer) {
 
     pokeToConnect.setID(jsonData["id"].get<int>());
     pokeToConnect.setName(jsonData["name"].get<std::string>());
+
+    setSprite(pokeToConnect, jsonData);
+}
+
+bool pokeDataFetcher::setSprite(Poke& pokeToConnect, nlohmann::json jsonFile) {
+    CURL* curl;
+    CURLcode res;
+    std::ofstream spritePNG("/home/sjd23/projects/PokeBoring/assets/images/sprites/" + pokeToConnect.getName() + ".png", std::ios::binary);
+
+    curl = curl_easy_init();
+
+    if (curl) {
+        std::string URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + std::to_string(pokeToConnect.getID()) + ".png";
+
+        curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteSpriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &spritePNG);
+
+        res = curl_easy_perform(curl);
+
+        curl_easy_cleanup(curl);
+
+        if (res != CURLE_OK) {
+            return false;
+        } else {
+            pokeToConnect.setSprite("/home/sjd23/projects/PokeBoring/assets/images/sprites/" + pokeToConnect.getName() + ".png");
+            return true;
+        }
+    }
+    return false;
 }
