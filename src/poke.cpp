@@ -12,6 +12,8 @@ Poke::Poke() {
     stats.setSpeAttack(-99);
     stats.setSpeDefense(-99);
     stats.setSpeed(-99);
+
+    sprite = "default";
 }
 
 /* Constructor that allows declaration of
@@ -26,6 +28,8 @@ Poke::Poke(int idDecleration) {
     stats.setSpeAttack(-99);
     stats.setSpeDefense(-99);
     stats.setSpeed(-99);
+
+    sprite = "default";
 }
 
 /* Default destructor for Poke object */
@@ -41,6 +45,11 @@ void Poke::setName(std::string input) {
     name = input;
 }
 
+/* Sets Poke object's sprite file location */
+void Poke::setSprite(std::string input) {
+    sprite = input;
+}
+
 /* Gets Poke object's id,
 returns as an integer */
 const int Poke::getID() const {
@@ -51,6 +60,11 @@ const int Poke::getID() const {
 returns as a string */
 const std::string Poke::getName() const {
     return name;
+}
+
+/* Gets Poke object's sprite file location */
+const std::string Poke::getSprite() const {
+    return sprite;
 }
 
 /* Downloads and syncs a Poke

@@ -17,14 +17,17 @@ class Poke {
         // Setters
         void setID(int input);
         void setName(std::string input);
+        void setSprite(std::string input);
 
         // Getters
         const int getID() const;
         const std::string getName() const;
+        const std::string getSprite() const;
     private:
         int id;
         std::string name;
         Stats stats;
+        std::string sprite;
 };
 
 struct pokeDataFetcher {
