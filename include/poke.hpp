@@ -2,6 +2,9 @@
 #define POKEMON_HPP
 
 #include <string>
+#include <curl/curl.h>
+#include <nlohmann/json.hpp>
+#include "curlHelpers.hpp"
 #include "stats.hpp"
 
 class Poke {
@@ -22,6 +25,11 @@ class Poke {
         int id;
         std::string name;
         Stats stats;
+};
+
+struct pokeDataFetcher {
+    bool fetchData(Poke& poke);
+    void connectData(Poke& pokeToConnect, std::string readBuffer);
 };
 
 #endif

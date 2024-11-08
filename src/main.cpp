@@ -2,7 +2,8 @@
 #include "poke.hpp"
 
 int main() {
-    //Poke poke;
-    //poke.setName("Pikachu");
-    //std::cout << poke.getName() << std::endl;
+    Poke poke(685);
+    pokeDataFetcher fetch;
+    fetch.fetchData(poke);
+    std::cout << poke.getName() << std::endl;
 }
