@@ -20,22 +20,29 @@ class Poke {
         void setID(int input);
         void setName(std::string input);
         void setSprite(std::string input);
+        void setStatHP(int input);
+        void setStatAttack(int input);
+        void setStatDefense(int input);
+        void setStatSpeAttack(int input);
+        void setStatSpeDefense(int input);
+        void setStatSpeed(int input);
 
         // Getters
         const int getID() const;
         const std::string getName() const;
         const std::string getSprite() const;
+        const int getStatHP() const;
     private:
         int id;
         std::string name;
-        Stats stats;
         std::string sprite;
+        Stats stats;
 };
 
 struct pokeDataFetcher {
     bool fetchData(Poke& poke);
     void connectData(Poke& pokeToConnect, std::string readBuffer);
-    bool setSprite(Poke& pokeToConnect, nlohmann::json jsonFile);
+    bool downloadSprite(Poke& pokeToConnect, nlohmann::json jsonFile);
 };
 
 #endif
