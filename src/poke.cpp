@@ -5,6 +5,7 @@ initilizes all values to default state */
 Poke::Poke() {
     id = -99;
     name = "default";
+    sprite = "default";
 
     stats.setHP(-99);
     stats.setAttack(-99);
@@ -12,8 +13,6 @@ Poke::Poke() {
     stats.setSpeAttack(-99);
     stats.setSpeDefense(-99);
     stats.setSpeed(-99);
-
-    sprite = "default";
 }
 
 /* Constructor that allows declaration of
@@ -21,6 +20,7 @@ an ID along with the default Poke object */
 Poke::Poke(int idDecleration) {
     id = idDecleration;
     name = "default";
+    sprite = "default";
 
     stats.setHP(-99);
     stats.setAttack(-99);
@@ -28,12 +28,12 @@ Poke::Poke(int idDecleration) {
     stats.setSpeAttack(-99);
     stats.setSpeDefense(-99);
     stats.setSpeed(-99);
-
-    sprite = "default";
 }
 
 /* Default destructor for Poke object */
-Poke::~Poke() {}
+Poke::~Poke() {
+    remove(sprite.c_str()); // Delete Poke's sprite png from assets/images/sprites
+}
 
 /* Sets Poke object's id */
 void Poke::setID(int input) {
@@ -50,6 +50,36 @@ void Poke::setSprite(std::string input) {
     sprite = input;
 }
 
+/* Sets Poke object's HP stat */
+void Poke::setStatHP(int input) {
+    stats.setHP(input);
+}
+
+/* Sets Poke object's attack stat */
+void Poke::setStatAttack(int input) {
+    stats.setAttack(input);
+}
+
+/* Sets Poke object's defense stat */
+void Poke::setStatDefense(int input) {
+    stats.setDefense(input);
+}
+
+/* Sets Poke object's special attack stat */
+void Poke::setStatSpeAttack(int input) {
+    stats.setSpeAttack(input);
+}
+
+/* Sets Poke object's special defense stat */
+void Poke::setStatSpeDefense(int input) {
+    stats.setSpeDefense(input);
+}
+
+/* Sets Poke object's speed stat */
+void Poke::setStatSpeed(int input) {
+    stats.setSpeed(input);
+}
+
 /* Gets Poke object's id,
 returns as an integer */
 const int Poke::getID() const {
@@ -62,9 +92,16 @@ const std::string Poke::getName() const {
     return name;
 }
 
-/* Gets Poke object's sprite file location */
+/* Gets Poke object's sprite file location,
+returns as a string */
 const std::string Poke::getSprite() const {
     return sprite;
+}
+
+/* Gets Poke object's HP stat,
+returns as an integer */
+const int Poke::getStatHP() const {
+    return stats.getHP();
 }
 
 /* Downloads and syncs a Poke
@@ -102,15 +139,24 @@ bool pokeDataFetcher::fetchData(Poke& poke) {
 void pokeDataFetcher::connectData(Poke& pokeToConnect, std::string readBuffer) {
     auto jsonData = nlohmann::json::parse(readBuffer);
 
-    pokeToConnect.setID(jsonData["id"].get<int>());
-    pokeToConnect.setName(jsonData["name"].get<std::string>());
-
-    setSprite(pokeToConnect, jsonData);
+    pokeToConnect.setID(jsonData["id"].get<int>()); // ID
+    pokeToConnect.setName(jsonData["name"].get<std::string>()); // Name
+    downloadSprite(pokeToConnect, jsonData); // Sprite
+    pokeToConnect.setStatHP(jsonData["stats"][0]["base_stat"].get<int>()); // Stat: HP
+    pokeToConnect.setStatAttack(jsonData["stats"][1]["base_stat"].get<int>()); // Stat: Attack
+    pokeToConnect.setStatDefense(jsonData["stats"][2]["base_stat"].get<int>()); // Stat: Defense
+    pokeToConnect.setStatSpeAttack(jsonData["stats"][3]["base_stat"].get<int>()); // Stat: Special Attack
+    pokeToConnect.setStatSpeDefense(jsonData["stats"][4]["base_stat"].get<int>()); // Stat: Special Defense
+    pokeToConnect.setStatSpeed(jsonData["stats"][5]["base_stat"].get<int>()); // Stat: Speed
 }
 
-bool pokeDataFetcher::setSprite(Poke& pokeToConnect, nlohmann::json jsonFile) {
+/* Downloads a Poke object's sprite into assets/images/sprites,
+saves file address as Poke object's sprite variable */
+bool pokeDataFetcher::downloadSprite(Poke& pokeToConnect, nlohmann::json jsonFile) {
     CURL* curl;
     CURLcode res;
+
+    // TODO: Fix this to where you can use a relative path
     std::ofstream spritePNG("/home/sjd23/projects/PokeBoring/assets/images/sprites/" + pokeToConnect.getName() + ".png", std::ios::binary);
 
     curl = curl_easy_init();
@@ -125,6 +171,7 @@ bool pokeDataFetcher::setSprite(Poke& pokeToConnect, nlohmann::json jsonFile) {
         res = curl_easy_perform(curl);
 
         curl_easy_cleanup(curl);
+        spritePNG.close();
 
         if (res != CURLE_OK) {
             return false;
