@@ -104,6 +104,36 @@ const int Poke::getStatHP() const {
     return stats.getHP();
 }
 
+/* Gets Poke object's attack stat,
+returns as an integer */
+const int Poke::getStatAttack() const {
+    return stats.getAttack();
+}
+
+/* Gets Poke object's defense stat,
+returns as an integer */
+const int Poke::getStatDefense() const {
+    return stats.getDefense();
+}
+
+/* Gets Poke object's special attack stat,
+returns as an integer */
+const int Poke::getStatSpeAttack() const {
+    return stats.getSpeAttack();
+}
+
+/* Gets Poke object's special defense stat,
+returns as an integer */
+const int Poke::getStatSpeDefense() const {
+    return stats.getSpeDefense();
+}
+
+/* Gets Poke object's speed stat,
+returns as an integer */
+const int Poke::getStatSpeed() const {
+    return stats.getSpeed();
+}
+
 /* Downloads and syncs a Poke
 object to a PokeAPI JSON file,
 returns a boolean true or false */
