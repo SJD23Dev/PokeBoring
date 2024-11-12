@@ -32,6 +32,11 @@ class Poke {
         const std::string getName() const;
         const std::string getSprite() const;
         const int getStatHP() const;
+        const int getStatAttack() const;
+        const int getStatDefense() const;
+        const int getStatSpeAttack() const;
+        const int getStatSpeDefense() const;
+        const int getStatSpeed() const;
     private:
         int id;
         std::string name;
