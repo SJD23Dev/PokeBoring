@@ -23,6 +23,7 @@ class Stats {
         const int getSpeDefense() const;
         const int getSpeed() const;
     private:
+        // TODO: Add base & EV variables for each stat type
         int hp;
         int attack;
         int defense;
