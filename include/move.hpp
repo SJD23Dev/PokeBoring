@@ -1,12 +1,17 @@
 #ifndef MOVES_HPP
 #define MOVES_HPP
 
+#include <iostream>
 #include <string>
+#include <curl/curl.h>
+#include <nlohmann/json.hpp>
+#include "curlHelpers.hpp"
 
 class Move {
     public:
         // Constructors
         Move();
+        Move(std::string nameDeclaration);
         ~Move();
 
         // Setters
@@ -16,6 +21,7 @@ class Move {
         void setPP(int input);
         void setPriority(int input);
         void setAccuracy(int input);
+        void setLevelLearnedAt(int input);
 
         // Getters
         const int getID() const;
@@ -24,6 +30,7 @@ class Move {
         const int getPP() const;
         const int getPriority() const;
         const int getAccuracy() const;
+        const int getLevelLearnedAt() const;
     private:
         int id;
         std::string name;
@@ -31,6 +38,12 @@ class Move {
         int pp;
         int priority;
         int accuracy;
+        int levelLearnedAt;
 };
+
+namespace moveDataFetcher {
+    bool fetch(Move& move);
+    void connect(Move& moveToConnect, std::string readBuffer);   
+}
 
 #endif
