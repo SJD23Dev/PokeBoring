@@ -1,3 +1,6 @@
+#ifndef LEVELMECHANICS_HPP
+#define LEVELMECHANICS_HPP
+
 #include "poke.hpp"
 
 namespace levelMechanics {
@@ -10,3 +13,5 @@ namespace levelMechanics {
     // TODO: Implement gfFluctuating()
 
 }
+
+#endif
