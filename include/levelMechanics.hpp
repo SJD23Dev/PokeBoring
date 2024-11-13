@@ -1,4 +1,3 @@
-#include <cmath>
 #include "poke.hpp"
 
 namespace levelMechanics {
