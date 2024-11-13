@@ -17,8 +17,8 @@ Poke::Poke() {
 
 /* Constructor that allows declaration of
 an ID along with the default Poke object */
-Poke::Poke(int idDecleration) {
-    id = idDecleration;
+Poke::Poke(int idDeclaration) {
+    id = idDeclaration;
     name = "default";
     sprite = "default";
 
@@ -134,6 +134,45 @@ const int Poke::getStatSpeed() const {
     return stats.getSpeed();
 }
 
+/* Adds move to Poke object's move set */
+void Poke::moveSetAdd(Move move) {
+    moveSet.push_back(move);
+}
+
+bool Poke::moveSetCheckFor(std::string moveName) {
+    for (int i = 0; i < moveSet.size(); i++) {
+        if (moveName == moveSet[i].getName()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void Poke::moveSetPrint() {
+    std::cout << "Complete move set for " + getName() + ":" << std::endl;
+    for (int i = 0; i < moveSet.size(); i++) {
+        std::cout << i + 1 << ". " << moveSet[i].getName() << " | Learned at level: " << moveSet[i].getLevelLearnedAt() << std::endl;
+    }
+}
+
+void Poke::activeMoveSetInitilize() {
+    int maxMoves = 4;
+    int addedMoves = 0;
+    for (int i = 0; i < moveSet.size(); i++) {
+        if (moveSet[i].getLevelLearnedAt() == 1 && addedMoves < maxMoves) {
+            activeMoveSet[addedMoves] = moveSet[i];
+            addedMoves += 1;
+        }
+    }
+}
+
+void Poke::activeMoveSetPrint() {
+    std::cout << "Active move set for " + getName() + ":" << std::endl;
+    for (int i = 0; i < 4; i++) {
+        std::cout << i + 1 << ". " << activeMoveSet[i].getName() << std::endl;
+    }
+}
+
 /* Downloads and syncs a Poke
 object to a PokeAPI JSON file,
 returns a boolean true or false */
@@ -171,18 +210,42 @@ void pokeDataFetcher::connect(Poke& pokeToConnect, std::string readBuffer) {
 
     pokeToConnect.setID(jsonData["id"].get<int>()); // ID
     pokeToConnect.setName(jsonData["name"].get<std::string>()); // Name
-    downloadSprite(pokeToConnect, jsonData); // Sprite
     pokeToConnect.setStatHP(jsonData["stats"][0]["base_stat"].get<int>()); // Stat: HP
     pokeToConnect.setStatAttack(jsonData["stats"][1]["base_stat"].get<int>()); // Stat: Attack
     pokeToConnect.setStatDefense(jsonData["stats"][2]["base_stat"].get<int>()); // Stat: Defense
     pokeToConnect.setStatSpeAttack(jsonData["stats"][3]["base_stat"].get<int>()); // Stat: Special Attack
     pokeToConnect.setStatSpeDefense(jsonData["stats"][4]["base_stat"].get<int>()); // Stat: Special Defense
     pokeToConnect.setStatSpeed(jsonData["stats"][5]["base_stat"].get<int>()); // Stat: Speed
+
+    connectMoves(pokeToConnect, jsonData); // Move Set
+    pokeToConnect.activeMoveSetInitilize(); // Active (level 1) move set
+
+    connectSprite(pokeToConnect); // Sprite
+}
+
+void pokeDataFetcher::connectMoves(Poke& pokeToConnect, nlohmann::json jsonFile) {
+    std::string moveName, moveLearnMethod;
+    int moveLevelLearnedAt;
+
+    for (int i = 0; i < jsonFile["moves"].size(); i++) {
+        for (int j = 0; j < jsonFile["moves"][i]["version_group_details"].size(); j++) {
+            moveLearnMethod = jsonFile["moves"][i]["version_group_details"][j]["move_learn_method"]["name"].get<std::string>();
+            moveName = jsonFile["moves"][i]["move"]["name"].get<std::string>();
+            moveLevelLearnedAt = jsonFile["moves"][i]["version_group_details"][j]["level_learned_at"].get<int>();
+            
+            if (moveLearnMethod == "level-up" && !pokeToConnect.moveSetCheckFor(moveName)) {
+                Move newMove(moveName);
+                moveDataFetcher::fetch(newMove);
+                newMove.setLevelLearnedAt(moveLevelLearnedAt);
+                pokeToConnect.moveSetAdd(newMove);
+            }
+        }
+    }
 }
 
 /* Downloads a Poke object's sprite into assets/images/sprites,
 saves file address as Poke object's sprite variable */
-bool pokeDataFetcher::downloadSprite(Poke& pokeToConnect, nlohmann::json jsonFile) {
+bool pokeDataFetcher::connectSprite(Poke& pokeToConnect) {
     CURL* curl;
     CURLcode res;
 
