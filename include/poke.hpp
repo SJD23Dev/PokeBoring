@@ -44,10 +44,10 @@ class Poke {
         Stats stats;
 };
 
-struct pokeDataFetcher {
-    bool fetchData(Poke& poke);
-    void connectData(Poke& pokeToConnect, std::string readBuffer);
+namespace pokeDataFetcher {
+    bool fetch(Poke& poke);
+    void connect(Poke& pokeToConnect, std::string readBuffer);
     bool downloadSprite(Poke& pokeToConnect, nlohmann::json jsonFile);
-};
+}
 
 #endif

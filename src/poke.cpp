@@ -32,7 +32,7 @@ Poke::Poke(int idDecleration) {
 
 /* Default destructor for Poke object */
 Poke::~Poke() {
-    remove(sprite.c_str()); // Delete Poke's sprite png from assets/images/sprites
+    // remove(sprite.c_str()); // Delete Poke's sprite png from assets/images/sprites
 }
 
 /* Sets Poke object's id */
@@ -137,7 +137,7 @@ const int Poke::getStatSpeed() const {
 /* Downloads and syncs a Poke
 object to a PokeAPI JSON file,
 returns a boolean true or false */
-bool pokeDataFetcher::fetchData(Poke& poke) {
+bool pokeDataFetcher::fetch(Poke& poke) {
     CURL* curl;
     CURLcode res;
     std::string readBuffer;
@@ -156,7 +156,7 @@ bool pokeDataFetcher::fetchData(Poke& poke) {
         curl_easy_cleanup(curl);
 
         if (res == CURLE_OK) {
-            connectData(poke, readBuffer);
+            connect(poke, readBuffer);
             return true;
         } else {
             return false;
@@ -166,7 +166,7 @@ bool pokeDataFetcher::fetchData(Poke& poke) {
 }
 
 /* Assigns the data from the JSON file to the Poke object */
-void pokeDataFetcher::connectData(Poke& pokeToConnect, std::string readBuffer) {
+void pokeDataFetcher::connect(Poke& pokeToConnect, std::string readBuffer) {
     auto jsonData = nlohmann::json::parse(readBuffer);
 
     pokeToConnect.setID(jsonData["id"].get<int>()); // ID
