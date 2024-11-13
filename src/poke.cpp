@@ -139,6 +139,8 @@ void Poke::moveSetAdd(Move move) {
     moveSet.push_back(move);
 }
 
+/* Searches move set for a name match,
+returns true or false */
 bool Poke::moveSetCheckFor(std::string moveName) {
     for (int i = 0; i < moveSet.size(); i++) {
         if (moveName == moveSet[i].getName()) {
@@ -148,6 +150,7 @@ bool Poke::moveSetCheckFor(std::string moveName) {
     return false;
 }
 
+/* Prints total move set to terminal */
 void Poke::moveSetPrint() {
     std::cout << "Complete move set for " + getName() + ":" << std::endl;
     for (int i = 0; i < moveSet.size(); i++) {
@@ -155,6 +158,8 @@ void Poke::moveSetPrint() {
     }
 }
 
+/* Initilizes a Poke object's active move set 
+to level 1 moves */
 void Poke::activeMoveSetInitilize() {
     int maxMoves = 4;
     int addedMoves = 0;
@@ -166,6 +171,7 @@ void Poke::activeMoveSetInitilize() {
     }
 }
 
+/* Prints active move set to terminal */
 void Poke::activeMoveSetPrint() {
     std::cout << "Active move set for " + getName() + ":" << std::endl;
     for (int i = 0; i < 4; i++) {
