@@ -186,7 +186,7 @@ bool pokeDataFetcher::downloadSprite(Poke& pokeToConnect, nlohmann::json jsonFil
     CURL* curl;
     CURLcode res;
 
-    // TODO: Fix this to where you can use a relative path
+    // TODO: Fix this to where spritePNG uses a relative path, not the absolute one below
     std::ofstream spritePNG("/home/sjd23/projects/PokeBoring/assets/images/sprites/" + pokeToConnect.getName() + ".png", std::ios::binary);
 
     curl = curl_easy_init();
