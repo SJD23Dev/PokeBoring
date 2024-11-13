@@ -5,6 +5,7 @@ initilizes all values to default state */
 Poke::Poke() {
     id = -99;
     name = "default";
+    level = -99;
     sprite = "default";
 
     stats.setHP(-99);
@@ -20,6 +21,7 @@ an ID along with the default Poke object */
 Poke::Poke(int idDeclaration) {
     id = idDeclaration;
     name = "default";
+    level = -99;
     sprite = "default";
 
     stats.setHP(-99);
@@ -43,6 +45,11 @@ void Poke::setID(int input) {
 /* Sets Poke object's name */
 void Poke::setName(std::string input) {
     name = input;
+}
+
+/* Sets Poke object's level */
+void Poke::setLevel(int input) {
+    level = input;
 }
 
 /* Sets Poke object's sprite file location */
@@ -90,6 +97,12 @@ const int Poke::getID() const {
 returns as a string */
 const std::string Poke::getName() const {
     return name;
+}
+
+/* Get Poke object's level,
+returns as an int */
+const int Poke::getLevel() const {
+    return level;
 }
 
 /* Gets Poke object's sprite file location,
@@ -225,6 +238,7 @@ void pokeDataFetcher::connect(Poke& pokeToConnect, std::string readBuffer) {
 
     connectMoves(pokeToConnect, jsonData); // Move Set
     pokeToConnect.activeMoveSetInitilize(); // Active (level 1) move set
+
 
     connectSprite(pokeToConnect); // Sprite
 }

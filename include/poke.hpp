@@ -21,6 +21,7 @@ class Poke {
         // Setters
         void setID(int input);
         void setName(std::string input);
+        void setLevel(int input);
         void setSprite(std::string input);
         void setStatHP(int input);
         void setStatAttack(int input);
@@ -32,6 +33,7 @@ class Poke {
         // Getters
         const int getID() const;
         const std::string getName() const;
+        const int getLevel() const;
         const std::string getSprite() const;
         const int getStatHP() const;
         const int getStatAttack() const;
@@ -51,6 +53,7 @@ class Poke {
     private:
         int id;
         std::string name;
+        int level;
         std::string sprite;
         Stats stats;
         std::vector<Move> moveSet; // Vector of all learnable moves through level up
