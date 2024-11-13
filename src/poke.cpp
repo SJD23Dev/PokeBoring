@@ -238,7 +238,7 @@ void pokeDataFetcher::connect(Poke& pokeToConnect, std::string readBuffer) {
 
     connectMoves(pokeToConnect, jsonData); // Move Set
     pokeToConnect.activeMoveSetInitilize(); // Active (level 1) move set
-
+    pokeToConnect.setLevel(1); // Set to level 1
 
     connectSprite(pokeToConnect); // Sprite
 }
