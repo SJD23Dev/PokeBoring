@@ -10,6 +10,7 @@ add_executable(PokeBoring
                src/curlHelpers.cpp
                src/poke.cpp
                src/stats.cpp
+               src/move.cpp
                src/levelMechanics.cpp
                src/battle.cpp)
 
