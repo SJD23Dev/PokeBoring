@@ -9,6 +9,19 @@ Move::Move() {
     pp = -99;
     priority = -99;
     accuracy = -99;
+    levelLearnedAt = -99;
+}
+
+/* Constructor that allows declaration of
+an name along with the default Move object */
+Move::Move(std::string nameDeclaration) {
+    id = -99;
+    name = nameDeclaration;
+    power = -99;
+    pp = -99;
+    priority = -99;
+    accuracy = -99;
+    levelLearnedAt = -99;
 }
 
 /* Default destructor for Move object,
@@ -43,6 +56,11 @@ void Move::setPriority(int input) {
 /* Sets Move object's accuracy */
 void Move::setAccuracy(int input) {
     accuracy = input;
+}
+
+/* Sets Move object's level learned at */
+void Move::setLevelLearnedAt(int input) {
+    levelLearnedAt = input;
 }
 
 /* Gets Move object's id,
@@ -80,3 +98,44 @@ returns as an integer */
 const int Move::getAccuracy() const {
     return accuracy;
 }
+
+/* Gets Move object's level learned at,
+returns as an integer */
+const int Move::getLevelLearnedAt() const {
+    return levelLearnedAt;
+}
+
+bool moveDataFetcher::fetch(Move& move) {
+    CURL* curl;
+    CURLcode res;
+    std::string readBuffer;
+
+    curl = curl_easy_init();
+
+    if (curl) {
+        std::string URL = "https://pokeapi.co/api/v2/move/" + move.getName();
+
+        curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+
+        res = curl_easy_perform(curl);
+
+        curl_easy_cleanup(curl);
+
+        if (res == CURLE_OK) {
+            connect(move, readBuffer);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    return false;
+}
+
+void moveDataFetcher::connect(Move& moveToConnect, std::string readBuffer) {
+    auto jsonData = nlohmann::json::parse(readBuffer);
+
+    moveToConnect.setID(jsonData["id"].get<int>()); // ID
+    moveToConnect.setName(jsonData["name"].get<std::string>()); // Name
+} 
