@@ -243,6 +243,7 @@ void pokeDataFetcher::connect(Poke& pokeToConnect, std::string readBuffer) {
     connectSprite(pokeToConnect); // Sprite
 }
 
+// TODO: Add function comment :)
 void pokeDataFetcher::connectMoves(Poke& pokeToConnect, nlohmann::json jsonFile) {
     std::string moveName, moveLearnMethod;
     int moveLevelLearnedAt;
