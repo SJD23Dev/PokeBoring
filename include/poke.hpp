@@ -1,6 +1,7 @@
 #ifndef POKEMON_HPP
 #define POKEMON_HPP
 
+#include <vector>
 #include <fstream>
 #include <cstdlib>
 #include <string>
@@ -8,12 +9,13 @@
 #include <nlohmann/json.hpp>
 #include "curlHelpers.hpp"
 #include "stats.hpp"
+#include "move.hpp"
 
 class Poke {
     public:
         // Constructors
         Poke();
-        Poke(int idDecleration);
+        Poke(int idDeclaration);
         ~Poke();
 
         // Setters
@@ -37,17 +39,29 @@ class Poke {
         const int getStatSpeAttack() const;
         const int getStatSpeDefense() const;
         const int getStatSpeed() const;
+        
+        // Move set functions
+        void moveSetAdd(Move move);
+        bool moveSetCheckFor(std::string moveName);
+        void moveSetPrint();
+
+        // Active move set functions
+        void activeMoveSetInitilize();
+        void activeMoveSetPrint();
     private:
         int id;
         std::string name;
         std::string sprite;
         Stats stats;
+        std::vector<Move> moveSet; // Vector of all learnable moves through level up
+        Move activeMoveSet[4]; // Array with 4 slots for active/playable moves
 };
 
 namespace pokeDataFetcher {
     bool fetch(Poke& poke);
     void connect(Poke& pokeToConnect, std::string readBuffer);
-    bool downloadSprite(Poke& pokeToConnect, nlohmann::json jsonFile);
+    void connectMoves(Poke& pokeToConnect, nlohmann::json jsonFile);
+    bool connectSprite(Poke& pokeToConnect);
 }
 
 #endif
