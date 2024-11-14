@@ -7,11 +7,10 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     return size * nmemb;
 }
 
-// TODO: Write function description :)
+// TODO: Write description
 size_t WriteSpriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     std::ofstream* stream = static_cast<std::ofstream*>(userp);
     size_t totalSize = size * nmemb;
     stream->write(static_cast<char*>(contents), totalSize);
     return totalSize;
 }
-
