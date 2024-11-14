@@ -138,4 +138,5 @@ void moveDataFetcher::connect(Move& moveToConnect, std::string readBuffer) {
 
     moveToConnect.setID(jsonData["id"].get<int>()); // ID
     moveToConnect.setName(jsonData["name"].get<std::string>()); // Name
+    moveToConnect.setPriority(jsonData["priority"].get<int>()); // Priority
 } 
