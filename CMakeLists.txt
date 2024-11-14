@@ -14,7 +14,8 @@ add_executable(PokeBoring
                src/move.cpp
                src/levelMechanics.cpp
                src/playerCharacter.cpp
-               src/trainer.cpp)
+               src/trainer.cpp
+               src/encounter.cpp)
 
 # Include the .hpp header files in include/
 target_include_directories(PokeBoring PUBLIC ${CMAKE_SOURCE_DIR}/include/)
