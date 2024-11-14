@@ -21,12 +21,14 @@ class PlayerCharacter {
 
         // Active pokemon functions
         void activePokeSet(Poke& pokeToSet);
-        void activePokeSwap(int fromPokeInventoryIndex);
+        void activePokeSetFrom(int pokeInventorySlot);
 
         // Generation functions
         void populateInventoryWithRandom(int numberOfPoke);
     private:
-        Poke activePoke[1];
+        Poke* activePoke[1];
+        Poke* active;
+
         std::vector<Poke> pokeInventory;
         int pokeInventoryCounter;
 };

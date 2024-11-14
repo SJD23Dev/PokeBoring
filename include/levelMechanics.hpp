@@ -10,9 +10,7 @@ namespace levelMechanics {
     int gfMediumFast(int n);
     int gfMediumSlow(int n);
     int gfSlow(int n);
-    // TODO: Implement gfFluctuating()
-    
-    // Levelling functions
+    int gfFluctuating(int n);
 } 
 
 #endif
