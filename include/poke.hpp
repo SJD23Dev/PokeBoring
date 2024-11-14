@@ -29,6 +29,7 @@ class Poke {
         void setStatSpeAttack(int input);
         void setStatSpeDefense(int input);
         void setStatSpeed(int input);
+        void setIsFighting(bool input);
 
         // Getters
         const int getID() const;
@@ -41,6 +42,7 @@ class Poke {
         const int getStatSpeAttack() const;
         const int getStatSpeDefense() const;
         const int getStatSpeed() const;
+        const bool getIsFighting() const;
         
         // Move set functions
         void moveSetAdd(Move move);
@@ -59,6 +61,7 @@ class Poke {
         Stats stats;
         std::vector<Move> moveSet; // Vector of all learnable moves through level up
         Move activeMoveSet[4]; // Array with 4 slots for active/playable moves
+        bool isFighting; // Flag for determining if a Poke is "active" (in combat/chosen to be sent out)
 };
 
 namespace pokeDataFetcher {

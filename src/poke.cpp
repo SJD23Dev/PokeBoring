@@ -14,6 +14,8 @@ Poke::Poke() {
     stats.setSpeAttack(-99);
     stats.setSpeDefense(-99);
     stats.setSpeed(-99);
+
+    isFighting = false;
 }
 
 /* Constructor that allows declaration of
@@ -30,11 +32,13 @@ Poke::Poke(int idDeclaration) {
     stats.setSpeAttack(-99);
     stats.setSpeDefense(-99);
     stats.setSpeed(-99);
+
+    isFighting = false;
 }
 
 /* Default destructor for Poke object */
 Poke::~Poke() {
-    // remove(sprite.c_str()); // Delete Poke's sprite png from assets/images/sprites
+    remove(sprite.c_str()); // Delete Poke's sprite png from assets/images/sprites
 }
 
 /* Sets Poke object's id */
@@ -85,6 +89,11 @@ void Poke::setStatSpeDefense(int input) {
 /* Sets Poke object's speed stat */
 void Poke::setStatSpeed(int input) {
     stats.setSpeed(input);
+}
+
+/* Sets Poke object's isFighting boolean */
+void Poke::setIsFighting(bool input) {
+    isFighting = input;
 }
 
 /* Gets Poke object's id,
@@ -145,6 +154,12 @@ const int Poke::getStatSpeDefense() const {
 returns as an integer */
 const int Poke::getStatSpeed() const {
     return stats.getSpeed();
+}
+
+/* Gets Poke object;s isFighting value,
+returns as a boolean */
+const bool Poke::getIsFighting() const {
+    return isFighting;
 }
 
 /* Adds move to Poke object's move set */
