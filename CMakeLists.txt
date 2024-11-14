@@ -13,7 +13,6 @@ add_executable(PokeBoring
                src/stats.cpp
                src/move.cpp
                src/levelMechanics.cpp
-               src/battle.cpp
                src/playerCharacter.cpp
                src/trainer.cpp)
 
