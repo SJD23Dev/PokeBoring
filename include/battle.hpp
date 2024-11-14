@@ -11,6 +11,10 @@ class Battle {
 
         // Battle functions
         void fight(Poke& userPoke, Poke& enemyPoke);
+        Move getUserMove(Poke& userPoke);
+        Move getEnemyMove(Poke& enemyPoke);
+        void moveResolution(Poke& userPoke, Poke& enemyPoke, Move& userMove, Move& enemyMove);
+        int getTurnOrder(Poke& userPoke, Poke& enemyPoke, Move& userMove, Move& enemyMove);
     private:
         int turnCounter;
 };
