@@ -23,7 +23,6 @@ class Trainer {
         const std::string getName() const;
 
         // Generation functions
-        //void generateTotalRandom();
         void generateRandom(int numberOfPokemon);
 
         // Pokemon inventory functions
