@@ -3,6 +3,8 @@
 // TODO: Document
 PlayerCharacter::PlayerCharacter() {
     pokeInventoryCounter = 0;
+
+    activePoke[0] = nullptr;
 }
 
 // TODO: Document
@@ -45,20 +47,25 @@ void PlayerCharacter::pokeInventoryPrint() {
 
 /* Move a Poke from the PC's 6-slot Poke Inventory vector 
 to the 1-slot Active Poke array */
-void PlayerCharacter::activePokeSwap(int fromPokeInventoryIndex) {
-    Poke temp = activePoke[0];
+void PlayerCharacter::activePokeSetFrom(int pokeInventorySlot) {
+    int index = pokeInventorySlot - 1;
 
-    activePoke[0] = pokeInventory[fromPokeInventoryIndex];
-    activePoke[0].setIsFighting(true);
+    for (auto& poke : pokeInventory) {
+        poke.setIsFighting(false);
+    }
 
-    pokeInventory[fromPokeInventoryIndex] = temp;
-    pokeInventory[fromPokeInventoryIndex].setIsFighting(false);
+    activePoke[0] = &pokeInventory[index];
+    activePoke[0]->setIsFighting(true);
 }
 
 // TODO: Document
 void PlayerCharacter::activePokeSet(Poke& pokeToSet) {
-    activePoke[0] = pokeToSet;
-    activePoke[0].setIsFighting(true);
+    if (activePoke[0] != nullptr) {
+        activePoke[0]->setIsFighting(false);
+    }
+
+    activePoke[0] = &pokeToSet;
+    activePoke[0]->setIsFighting(true);
 }
 
 // TODO: Document

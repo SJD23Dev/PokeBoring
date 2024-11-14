@@ -45,3 +45,18 @@ int levelMechanics::gfSlow(int n) {
     int xpToLevelUp = (pow(n,3) * 1.25);
     return xpToLevelUp;
 }
+
+/* Returns XP to increase to n level for Fluctuating fomula,
+https://bulbapedia.bulbagarden.net/wiki/Experience */
+int levelMechanics::gfFluctuating(int n) {
+    if (n < 15) {
+        int xpToLevelUp = (pow(n,3) * (((n+1) / 3) + 24));
+        return xpToLevelUp;
+    } else if (n >= 15 && n < 36) {
+        int xpToLevelUp = ((pow(n,3) * (n + 14)) / 50);
+        return xpToLevelUp;
+    } else {
+        int xpToLevelUp = ((pow(n,3) * ((n/2) + 32)) / 50);
+        return xpToLevelUp;
+    }
+}
