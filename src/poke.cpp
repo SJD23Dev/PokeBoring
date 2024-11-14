@@ -262,7 +262,7 @@ void pokeDataFetcher::connect(Poke& pokeToConnect, std::string readBuffer) {
     connectSprite(pokeToConnect); // Sprite
 }
 
-// TODO: Add function comment :)
+/* Downloads a Poke object's Move Set */
 void pokeDataFetcher::connectMoves(Poke& pokeToConnect, nlohmann::json jsonFile) {
     std::string moveName, moveLearnMethod;
     int moveLevelLearnedAt;

@@ -105,6 +105,9 @@ const int Move::getLevelLearnedAt() const {
     return levelLearnedAt;
 }
 
+/* Downloads and syncs a Move
+object to a PokeAPI JSON file,
+returns a boolean true or false */
 bool moveDataFetcher::fetch(Move& move) {
     CURL* curl;
     CURLcode res;
@@ -133,6 +136,7 @@ bool moveDataFetcher::fetch(Move& move) {
     return false;
 }
 
+/* Assigns the data from the JSON file to the Move object */
 void moveDataFetcher::connect(Move& moveToConnect, std::string readBuffer) {
     auto jsonData = nlohmann::json::parse(readBuffer);
 

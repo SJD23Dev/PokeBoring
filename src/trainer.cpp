@@ -1,35 +1,33 @@
 #include "trainer.hpp"
 
-// TODO: Document
+/* Default constructor for Trainer object,
+initilizes all values to default state */ 
 Trainer::Trainer() {
     name = "default";
 }
 
-// TODO: Document
+/* Default destructor for Trainer object,
+initilizes all values to default state */ 
 Trainer::~Trainer() {}
 
-// TODO: Document
+/* Sets Trainer objects name */
 void Trainer::setName(std::string input) {
     name = input;
 }
 
-// TODO: Document
+/* Gets Trainer objects name,
+returns as a string */
 const std::string Trainer::getName() const {
     return name;
 }
 
-// TODO: Document
-
-// TODO: Document
+/* Generate a completely random Trainer with
+the entered number of Poke's */
 void Trainer::generateRandom(int numberOfPokemon) {
     Names name;
-    if (!name.getNames()) {
-        std::cerr << "Failed to load names. Exiting generateRandom." << std::endl;
-        return;
-    }
-    
-    setName(name.generateRandomName());
+    setName(name.generateRandomName()); // Give Trainer object a random name from /assets/txt/
 
+    // Generate 'n' number of Pokemon
     for (int i = 0; i < numberOfPokemon; i++) {
         std::uniform_int_distribution<int> range(0, 1024);
         int randomID = range(rng);
@@ -39,7 +37,8 @@ void Trainer::generateRandom(int numberOfPokemon) {
     }
 }
 
-// TODO: Document
+/* Add entered Poke object to Trainer's
+Poke Inventory */
 bool Trainer::pokeInventoryAdd(Poke pokeToAdd) {
     if (pokeInventory.size() >= 6) {
         return false;
@@ -50,7 +49,8 @@ bool Trainer::pokeInventoryAdd(Poke pokeToAdd) {
     }
 }
 
-// TODO: Document
+/* Remove Poke at entered index 
+from Trainer's Poke Inventory */
 bool Trainer::pokeInventoryRemove(int index) {
     if (pokeInventory.size() <= 0) {
         return false;
@@ -61,7 +61,7 @@ bool Trainer::pokeInventoryRemove(int index) {
     }
 }
 
-// TODO: Document
+/* Print the Trainer's Poke Inventory to the terminal */
 void Trainer::pokeInventoryPrint() {
     std::cout << getName() << "'s Pokémon Inventory [" << pokeInventory.size() << "/" << 6 << "]:" << std::endl;
     for (int i = 0; i < pokeInventory.size(); i++) {
@@ -69,7 +69,7 @@ void Trainer::pokeInventoryPrint() {
     }
 }
 
-// TODO: Document
+/* Load in last and first names into a Name's object */
 bool Names::getNames() {
     std::ifstream fileFirstNames("/home/sjd23/projects/PokeBoring/assets/txt/trainer_first_names.txt");
     std::ifstream fileLastName("/home/sjd23/projects/PokeBoring/assets/txt/trainer_last_names.txt");
@@ -100,7 +100,8 @@ bool Names::getNames() {
     return true;
 }
 
-// TODO: Document
+/* Generate a random name,
+return as a string */
 std::string Names::generateRandomName() {
     std::uniform_int_distribution<int> range1(0, firstNameList.size() - 1);
     std::uniform_int_distribution<int> range2(0, lastNameList.size() - 1);
