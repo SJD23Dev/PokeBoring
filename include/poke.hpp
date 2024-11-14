@@ -49,6 +49,7 @@ class Poke {
 
         // Active move set functions
         void activeMoveSetInitilize();
+        const Move activeMoveSetGet(int index) const;
         void activeMoveSetPrint();
     private:
         int id;

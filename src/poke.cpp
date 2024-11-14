@@ -184,6 +184,10 @@ void Poke::activeMoveSetInitilize() {
     }
 }
 
+const Move Poke::activeMoveSetGet(int index) const {
+    return activeMoveSet[index];
+}
+
 /* Prints active move set to terminal */
 void Poke::activeMoveSetPrint() {
     std::cout << "Active move set for " + getName() + ":" << std::endl;
