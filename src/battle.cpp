@@ -30,6 +30,7 @@ void Battle::fight(Poke& userPoke, Poke& enemyPoke) {
     }
 }
 
+// TODO: Document
 Move Battle::getUserMove(Poke& userPoke) {
     userPoke.activeMoveSetPrint();
     std::cout << "I select (input index) -> ";
@@ -39,6 +40,7 @@ Move Battle::getUserMove(Poke& userPoke) {
     return userMove;
 }
 
+// TODO: Document
 Move Battle::getEnemyMove(Poke& enemyPoke) {
     enemyPoke.activeMoveSetPrint();
     std::cout << "I select (input index) -> ";
@@ -48,6 +50,7 @@ Move Battle::getEnemyMove(Poke& enemyPoke) {
     return userMove;
 }
 
+// TODO: Document
 void Battle::moveResolution(Poke& userPoke, Poke& enemyPoke, Move& userMove, Move& enemyMove) {
     int turnOrder = getTurnOrder(userPoke, enemyPoke, userMove, enemyMove);
 
