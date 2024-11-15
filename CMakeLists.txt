@@ -15,7 +15,8 @@ add_executable(PokeBoring
                src/levelMechanics.cpp
                src/playerCharacter.cpp
                src/trainer.cpp
-               src/encounter.cpp)
+               src/encounter.cpp
+               src/window.cpp)
 
 # Include the .hpp header files in include/
 target_include_directories(PokeBoring PUBLIC ${CMAKE_SOURCE_DIR}/include/)
@@ -29,6 +30,10 @@ target_include_directories(PokeBoring PRIVATE ${CURL_INCLUDE_DIRS})
 # Find and link nlohmann/json
 find_package(nlohmann_json REQUIRED)
 target_link_libraries(PokeBoring PRIVATE nlohmann_json::nlohmann_json)
+
+# Find and link SDL2
+find_package(SDL2 REQUIRED)
+target_link_libraries(PokeBoring PRIVATE SDL2::SDL2)
 
 # Enable testing
 include(CTest)
