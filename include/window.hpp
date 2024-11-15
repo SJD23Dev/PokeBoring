@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 class Window {
     public:
