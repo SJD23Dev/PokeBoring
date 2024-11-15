@@ -36,6 +36,10 @@ target_link_libraries(PokeBoring PRIVATE nlohmann_json::nlohmann_json)
 find_package(SDL2 REQUIRED)
 target_link_libraries(PokeBoring PRIVATE SDL2::SDL2)
 
+# Find and link SDL2 TTF
+find_package(SDL2_ttf REQUIRED)
+target_link_libraries(PokeBoring PRIVATE SDL2_ttf::SDL2_ttf)
+
 # Enable testing
 include(CTest)
 enable_testing()
