@@ -16,7 +16,8 @@ add_executable(PokeBoring
                src/playerCharacter.cpp
                src/trainer.cpp
                src/encounter.cpp
-               src/window.cpp)
+               src/window.cpp
+               src/screenManager.cpp)
 
 # Include the .hpp header files in include/
 target_include_directories(PokeBoring PUBLIC ${CMAKE_SOURCE_DIR}/include/)
