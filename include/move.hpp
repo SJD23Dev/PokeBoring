@@ -1,5 +1,4 @@
-#ifndef MOVES_HPP
-#define MOVES_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -45,5 +44,3 @@ namespace moveDataFetcher {
     bool fetch(Move& move);
     void connect(Move& moveToConnect, std::string readBuffer);   
 }
-
-#endif

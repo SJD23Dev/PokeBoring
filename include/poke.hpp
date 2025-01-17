@@ -1,5 +1,4 @@
-#ifndef POKEMON_HPP
-#define POKEMON_HPP
+#pragma once
 
 #include <vector>
 #include <fstream>
@@ -69,6 +68,4 @@ namespace pokeDataFetcher {
     void connect(Poke& pokeToConnect, std::string readBuffer);
     void connectMoves(Poke& pokeToConnect, nlohmann::json jsonFile);
     bool connectSprite(Poke& pokeToConnect);
-}
-
-#endif
+};

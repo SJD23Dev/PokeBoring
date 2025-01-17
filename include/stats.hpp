@@ -1,5 +1,4 @@
-#ifndef STATS_HPP
-#define STATS_HPP
+#pragma once
 
 class Stats {
     public:
@@ -31,5 +30,3 @@ class Stats {
         int speDefense;
         int speed;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef ENCOUNTER_HPP
-#define ENCOUNTER_HPP
+#pragma once
 
 class Encounter {
     public:
@@ -8,5 +7,3 @@ class Encounter {
         ~Encounter();
     private:
 };
-
-#endif

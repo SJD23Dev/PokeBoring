@@ -1,5 +1,4 @@
-#ifndef PLAYERCHARACTER
-#define PLAYERCHARACTER
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -32,5 +31,3 @@ class PlayerCharacter {
         std::vector<Poke> pokeInventory;
         int pokeInventoryCounter;
 };
-
-#endif

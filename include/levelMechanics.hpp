@@ -1,7 +1,4 @@
-#ifndef LEVELMECHANICS_HPP
-#define LEVELMECHANICS_HPP
-
-#include "poke.hpp"
+#pragma once
 
 namespace levelMechanics {
     // Gain formula functions
@@ -12,5 +9,3 @@ namespace levelMechanics {
     int gfSlow(int n);
     int gfFluctuating(int n);
 } 
-
-#endif

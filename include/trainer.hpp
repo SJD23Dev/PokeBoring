@@ -1,5 +1,4 @@
-#ifndef TRAINER_HPP
-#define TRAINER_HPP
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -41,5 +40,3 @@ struct Names {
     std::vector<std::string> firstNameList;
     std::vector<std::string> lastNameList;
 };
-
-#endif

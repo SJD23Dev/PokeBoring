@@ -1,4 +1,5 @@
 #include "levelMechanics.hpp"
+#include "poke.hpp"
 
 /* Returns XP to increase to n level for Erratic fomula,
 https://bulbapedia.bulbagarden.net/wiki/Experience */

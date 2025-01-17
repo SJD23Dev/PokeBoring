@@ -1,5 +1,4 @@
-#ifndef RANDOM_HPP
-#define RANDOM_HPP
+#pragma once
 
 #include <random>
 #include <ctime>
@@ -10,5 +9,3 @@ and only once! */
 
 extern std::mt19937 rng;
 void seedRNG();
-
-#endif
